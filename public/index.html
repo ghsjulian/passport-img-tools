@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Passport | Stamp Size Image Creator And NID Scanner</title>
+        <link rel="stylesheet" href="styles/index.css" />
+        <link
+            rel="apple-touch-icon"
+            sizes="57x57"
+            href="favicons/apple-icon-57x57.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="60x60"
+            href="favicons/apple-icon-60x60.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="72x72"
+            href="favicons/apple-icon-72x72.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="76x76"
+            href="favicons/apple-icon-76x76.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="114x114"
+            href="favicons/apple-icon-114x114.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="favicons/apple-icon-120x120.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="144x144"
+            href="favicons/apple-icon-144x144.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="favicons/apple-icon-152x152.png"
+        />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="favicons/apple-icon-180x180.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="favicons/android-icon-192x192.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="favicons/favicon-32x32.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="favicons/favicon-96x96.png"
+        />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="favicons/favicon-16x16.png"
+        />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="msapplication-TileColor" content="#ffffff" />
+        <meta
+            name="msapplication-TileImage"
+            content="favicons/ms-icon-144x144.png"
+        />
+        <meta name="theme-color" content="#ffffff" />
+    </head>
+    <body>
+        <div id="main-container" class="container">
+            <div id="passport-page" class="row">
+                <h3>Passport Or Stamp Photo</h3>
+                <span id="msg"></span>
+                <label for="pass-photos">
+                    <span>Select Your Photos</span>
+                    <img src="/icons/cloud-computing.png" />
+                </label>
+                <input
+                    id="pass-photos"
+                    type="file"
+                    accept="image/*"
+                    multiple="true"
+                    hidden="true"
+                />
+                <select id="pass-copy">
+                    <option value="0">Select Photos Copy</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <div class="flex">
+                    <p>Passport Size:</p>
+                    <input
+                        checked
+                        id="ra-passport"
+                        type="radio"
+                        value="PASSPORT"
+                    />
+                </div>
+
+                <div class="flex">
+                    <p>Stamp Size:</p>
+                    <input id="ra-state" type="radio" value="STAMP" />
+                </div>
+                <button id="passport-create-btn" class="create-btn">
+                    <div id="loader"></div>
+                    <span>Create Now</span>
+                </button>
+                <div class="bottom">
+                    <p>Wanna Create PhotoState ?</p>
+                    <button id="passport-photo-page">PhotoState</button>
+                </div>
+            </div>
+
+            <div id="photo-state" class="row">
+                <h3>Create NID Photostat</h3>
+                <span id="nid-msg"></span>
+                <label for="front-nid">
+                    <span>Select Front Of NID</span>
+                    <img src="/icons/id-card.png" />
+                </label>
+                <label for="back-nid">
+                    <span>Select Back Of NID</span>
+                    <img src="/icons/id-card.png" />
+                </label>
+                <input
+                    id="front-nid"
+                    type="file"
+                    accept="image/*"
+                    hidden="true"
+                />
+                <input
+                    id="back-nid"
+                    type="file"
+                    accept="image/*"
+                    hidden="true"
+                />
+
+                <select id="photo-copy">
+                    <option value="0">Select PhotoState Copy</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+
+                <button id="create-photo-state" class="create-btn">
+                    <div id="load"></div>
+                    <span>Create PhotoState</span>
+                </button>
+                <div class="bottom">
+                    <p>Wanna Create Photo ?</p>
+                    <button id="photo-state-page">Passport Photo</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Area -->
+
+        <script src="js/passport-photo.js"></script>
+        <script src="js/photo-state.js"></script>
+    </body>
+</html>

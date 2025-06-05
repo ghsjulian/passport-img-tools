@@ -1,0 +1,267 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@page {
+    size: A4 portrait;
+    margin: 1.8mm 0;
+    padding: 0;
+    background: #ffffff;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px 20px 40px 20px;
+    background: #f0f4f8;
+    /* Remove flex and centering */
+}
+h1 {
+    margin-bottom: 1rem;
+    max-width: 900px;
+}
+.controls {
+    margin-bottom: 1rem;
+    max-width: 900px;
+}
+.controls label {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-right: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.2rem 0;
+    margin-bottom: 1rem;
+}
+label span {
+    margin: 0 0.2rem;
+    text-align: justify;
+}
+.controls p {
+    color: #000000;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0.3rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.controls p a {
+    color: #007bff;
+    font-weight: 900;
+    font-size: 17px;
+    margin: 0 0.2rem;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+button#print-btn {
+    margin-top: 10px;
+    padding: 5px 15px;
+    font-size: 1rem;
+    font-weight: 800;
+    background: #007bff;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5);
+    transition: background 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 200px;
+}
+button#print-btn img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+button#print-btn span {
+    margin: 0 .2rem;
+}
+button#print-btn:hover {
+    background: #0056b3;
+}
+
+/* Base grid styles */
+.grid-container {
+    background: white;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    margin-top: 25px;
+    margin-bottom: 40px;
+    display: grid;
+    gap: 10px;
+    justify-content: start;
+    width: 100%;
+    padding: 0.5px;
+}
+
+/* Passport size grid: 2in x 2in cells and 4 columns */
+.passport-size-grid {
+    grid-template-columns: repeat(4, 2in);
+    grid-template-rows: repeat(auto-fill, 2in);
+    width: calc(4 * 2in + 3 * 10px);
+}
+
+/* Stamp size grid: 1in x 1in cells and 8 columns */
+.stamp-size-grid {
+    grid-template-columns: repeat(8, 1in);
+    grid-template-rows: repeat(auto-fill, 1in);
+    width: calc(8 * 1in + 7 * 10px);
+}
+
+.photo-cell {
+    position: relative;
+    border: 2px solid #007bff;
+    box-sizing: border-box;
+    border-radius: 2px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.75rem;
+    color: #007bff;
+    user-select: none;
+    background: transparent;
+    width: 100%;
+}
+.photo-cell .spinner {
+    position: absolute;
+    display: block;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 48px;
+    height: 48px;
+    border-left: 4px solid #007bff;
+    border-top: 4px solid #007bff;
+    border-bottom: 4px solid #007bff;
+    border-right: 4px solid transparent;
+    border-radius: 50%;
+    animation: spin 0.6s linear infinite;
+}
+.photo-cell .error-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--error);
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    display: none;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+.photo-cell img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+/* Set cell size for passport and stamp sizes */
+.passport-size-grid .photo-cell {
+    width: 2in;
+    height: 2in;
+}
+.stamp-size-grid .photo-cell {
+    width: 1in;
+    height: 1in;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 950px) {
+    .passport-size-grid {
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(1.5in, 1fr));
+    }
+    .passport-size-grid .photo-cell {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+
+    .stamp-size-grid {
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(0.75in, 1fr));
+    }
+    .stamp-size-grid .photo-cell {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1 / 1;
+    }
+}
+@media (max-width: 600px) {
+    body {
+        padding: 10px 10px 40px 10px;
+    }
+    button#print-btn,
+    .controls,
+    h1,
+    .grid-container {
+        max-width: 100%;
+    }
+    .controls label {
+        display: flex;
+        margin-bottom: 8px;
+    }
+}
+
+@media print {
+    html {
+        background: #ffffff;
+    }
+    body * {
+        visibility: hidden;
+        background: #ffffff;
+    }
+    .grid-container,
+    .grid-container * {
+        visibility: visible;
+        margin: 0;
+    }
+    .grid-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+        gap: 0.3in;
+        background: white;
+        max-width: none;
+        width: 100%;
+    }
+    .passport-size-grid {
+        background: #ffffff;
+        display: grid !important;
+        grid-template-columns: repeat(4, 2in) !important;
+        grid-template-rows: repeat(5, 2in) !important;
+        width: auto !important;
+    }
+    .stamp-size-grid {
+        background: #ffffff;
+        display: grid !important;
+        grid-template-columns: repeat(8, 1in) !important;
+        grid-template-rows: repeat(11, 1in) !important;
+        width: auto !important;
+    }
+    .photo-cell {
+        border: 1px solid black;
+        background: white;
+        user-select: none;
+        box-shadow: none;
+        width: auto !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1 !important;
+    }
+}
+@keyframes spin {
+    to {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
