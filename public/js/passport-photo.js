@@ -150,7 +150,13 @@ const submitPassport = async data => {
                 localStorage.setItem("my-images",JSON.stringify(response.results))
                 localStorage.setItem("copy-size",JSON.stringify(response.copy_size))
             setTimeout(() => {
-                window.open("/print-photo.html","_blank")
+               // window.open("/print-photo.html","_blank")
+               let a = document.createElement("a")
+               a.setAttribute("target","_blank")
+               a.setAttribute("href","print-photo.html")
+               a.style.display="none"
+               a.click()
+               document.body.appendChild(a)
             }, 2000);
         } else if (response?.results[0]?.error?.message) {
             console.log(response?.results);
